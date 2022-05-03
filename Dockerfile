@@ -1,4 +1,4 @@
-FROM golang:1.11.2-alpine
+FROM golang:1.18
 WORKDIR /helloworld
 ADD . /helloworld
 RUN cd /helloworld && go build
