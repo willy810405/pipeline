@@ -1,2 +1,2 @@
-this is a demo for CI/CD pipeline.
+this is a demo for CI/CD pipeline
 
