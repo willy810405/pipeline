@@ -1,13 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-svc
+  labels:
+    run: demo-harbor-image
+  name: demo-harbor-image
 spec:
-  selector:
-    role: app
+  externalTrafficPolicy: Cluster
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-      nodePort: 32000
+  - nodePort: 31530
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: demo-harbor-image
+  sessionAffinity: None
   type: NodePort

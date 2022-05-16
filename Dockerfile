@@ -1,10 +1,16 @@
-FROM golang:alpine AS build-env
-RUN mkdir /go/src/app && apk update && apk add git
-ADD main.go /go/src/app/
-WORKDIR /go/src/app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o app .
+FROM ubuntu:20.04
 
-FROM scratch
-WORKDIR /app
-COPY --from=build-env /go/src/app/app .
-ENTRYPOINT [ "./app" ]
+ENV CONTAINER_TIMEZONE="Asia/Taipei"
+RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
+
+RUN apt update && apt install -y apache2
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_RUN_DIR /var/www/html
+
+RUN echo 'Hello, this is CI/CD pipeline test' > /var/www/html/index.html
+
+ENTRYPOINT ["/usr/sbin/apache2"]
+CMD ["-D", "FOREGROUND"]
