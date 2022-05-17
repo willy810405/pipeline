@@ -2,11 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: demo-harbor-image
-  name: demo-harbor-image
-  namespace: cicd-demo
+  name: jenkins-cicd-demo
+  namespaces: cicd-demo
 spec:
-  externalTrafficPolicy: Cluster
   ports:
-  - nodePort: 31530
-    port: 80
+  - port: 80
+    nodePort: 31530
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: jenkins-cicd-demo
+  type: NodePort
