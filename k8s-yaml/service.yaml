@@ -4,6 +4,7 @@ metadata:
   labels:
     run: demo-harbor-image
   name: demo-harbor-image
+  namespace: cicd-demo
 spec:
   externalTrafficPolicy: Cluster
   ports:
