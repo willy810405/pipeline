@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-cicd-demo
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: jenkins-cicd-demo
+    spec:
+      containers:
+        - name: jenkins-cicd-demo
+          image: harbor.hpe-taiwan-cic.net/jenkins/demo-pipeline:latest
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      app: jenkins-cicd-demo
