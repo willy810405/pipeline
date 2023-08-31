@@ -12,6 +12,6 @@ ENV APACHE_RUN_DIR /var/www/html
 
 RUN echo 'Hello, this is CI/CD pipeline test PRD~' > /var/www/html/index.html
 
-EXPOSE 80
+EXPOSE 5000
 ENTRYPOINT ["/usr/sbin/apache2"]
 CMD ["-D", "FOREGROUND"]
