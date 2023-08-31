@@ -15,7 +15,7 @@ pipeline{
         withCredentials([usernamePassword(credentialsId: 'harbor-user', usernameVariable: 'HARBOR_USER', passwordVariable: 'HARBOR_PSWD')]) {
           sh "docker login harbor.ymcop.com -u=\"${HARBOR_USER}\" -p=\"${HARBOR_PSWD}\""
           sh "docker build -t demo-pipeline ."
-          sh "docker tag demo-pipeline harbor.ymcop/jenkins/demo-pipeline:1.0"
+          sh "docker tag demo-pipeline harbor.ymcop.com/jenkins/demo-pipeline:1.0"
           sh "docker push harbor.ymcop.com/jenkins/demo-pipeline:1.0"
           }
        }
