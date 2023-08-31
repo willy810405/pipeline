@@ -13,10 +13,10 @@ pipeline{
     stage('Build Docker Image') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'harbor-user', usernameVariable: 'HARBOR_USER', passwordVariable: 'HARBOR_PSWD')]) {
-          sh "docker login harbor.hpe-taiwan-cic.net -u=\"${HARBOR_USER}\" -p=\"${HARBOR_PSWD}\""
+          sh "docker login harbor.ymcop.com -u=\"${HARBOR_USER}\" -p=\"${HARBOR_PSWD}\""
           sh "docker build -t demo-pipeline ."
-          sh "docker tag demo-pipeline harbor.hpe-taiwan-cic.net/jenkins/demo-pipeline:1.0"
-          sh "docker push harbor.hpe-taiwan-cic.net/jenkins/demo-pipeline:1.0"
+          sh "docker tag demo-pipeline harbor.ymcop/jenkins/demo-pipeline:1.0"
+          sh "docker push harbor.ymcop.com/jenkins/demo-pipeline:1.0"
           }
        }
     } 
@@ -30,7 +30,7 @@ pipeline{
 
     stage("Verify"){
       steps{
-        sh "curl 20.6.0.134"  
+        sh "curl demo.ymcop.com"  
       }    
     }
   }
