@@ -10,7 +10,7 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_RUN_DIR /var/www/html
 
-RUN echo 'Hello, this is CI/CD pipeline test PRD~' > /var/www/html/index.html
+RUN echo 'Hello, this is CI/CD pipeline test' > /var/www/html/index.html
 
 EXPOSE 5000
 ENTRYPOINT ["/usr/sbin/apache2"]
