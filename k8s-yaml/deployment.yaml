@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: jenkins-cicd-demo
-          image: harbor.hpe-taiwan-cic.net/jenkins/demo-pipeline:24
+          image: harbor.ymcop.com/jenkins/demo-pipeline:latest
           ports:
             - containerPort: 80
   selector:
